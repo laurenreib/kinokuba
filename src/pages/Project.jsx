@@ -76,8 +76,8 @@ export default function Project() {
         <div className="flex flex-col lg:flex-row items-start gap-0 w-full max-w-[1100px] mx-auto">
 
           {/* Title row — only shows above image when stacked (below lg) */}
-          {/* FIX: Applied negative bottom margin and relative z-index to pull the box down */}
-          <div className="flex lg:hidden items-baseline justify-between w-full -mb-2 relative z-10">
+          {/* FIX: Increased negative bottom margin to -mb-4 to pull text even closer */}
+          <div className="flex lg:hidden items-baseline justify-between w-full -mb-7 relative z-10">
             <h1 className="text-lg font-semibold tracking-wide leading-none">{project.title}</h1>
             <p className="text-[10px] tracking-[0.18em] text-neutral-400 uppercase whitespace-nowrap ml-2 leading-none">April 2026</p>
           </div>
@@ -200,8 +200,8 @@ export default function Project() {
       {/* ───── MOBILE LAYOUT ───── */}
       <div className="md:hidden flex flex-col w-full pb-10 bg-[#FAFAF9]">
         {/* Title (top-left) + Date (top-right) */}
-        {/* FIX: Applied negative bottom margin and relative z-index here as well */}
-        <div className="flex items-baseline justify-between px-4 mt-24 -mb-2 relative z-10">
+        {/* FIX: Increased negative bottom margin to -mb-4 here as well */}
+        <div className="flex items-baseline justify-between px-4 mt-24 -mb-4 relative z-10">
           <h1 className="text-sm font-semibold tracking-wide leading-none">{project.title}</h1>
           <p className="text-[9px] tracking-[0.12em] text-neutral-400 uppercase whitespace-nowrap ml-2 leading-none">
             April 2026
