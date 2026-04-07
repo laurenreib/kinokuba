@@ -195,7 +195,6 @@ export default function Project() {
         <div className="px-4">
           <div
             className="relative w-full overflow-hidden bg-[#FAFAF9]"
-            style={{ aspectRatio: "16/9" }}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -210,7 +209,7 @@ export default function Project() {
                 animate="center"
                 exit="exit"
                 transition={{ x: { type: "spring", stiffness: 300, damping: 30 }, opacity: { duration: 0.15 } }}
-                className="absolute inset-0 w-full h-full object-cover"
+                className="w-full h-auto block"
                 alt={`${project.title} - ${index + 1}`}
               />
             </AnimatePresence>
