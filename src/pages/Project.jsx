@@ -181,7 +181,7 @@ export default function Project() {
       </div>
 
       {/* ───── MOBILE LAYOUT ───── */}
-      <div className="md:hidden flex flex-col w-full pt-24 pb-10">
+      <div className="md:hidden flex flex-col w-full pt-24 pb-10 bg-[#FAFAF9]">
 
         {/* Title (top-left) + Date (top-right) — same horizontal padding as image */}
         <div className="flex items-baseline justify-between px-4 mb-2">
@@ -194,7 +194,7 @@ export default function Project() {
         {/* Swipeable Photo — inset from screen edges */}
         <div className="px-4">
           <div
-            className="relative w-full overflow-hidden bg-neutral-100"
+            className="relative w-full overflow-hidden bg-[#FAFAF9]"
             style={{ aspectRatio: "16/9" }}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
