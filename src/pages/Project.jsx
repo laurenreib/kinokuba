@@ -181,7 +181,7 @@ export default function Project() {
       </div>
 
       {/* ───── MOBILE LAYOUT ───── */}
-      <div className="md:hidden flex flex-col w-full pt-24 pb-10 bg-[#FAFAF9]">
+      <div className="md:hidden flex flex-col w-full pt-16 pb-10 bg-[#FAFAF9]">
 
         {/* Title (top-left) + Date (top-right) — same horizontal padding as image */}
         <div className="flex items-baseline justify-between px-4 mb-[3px]">
