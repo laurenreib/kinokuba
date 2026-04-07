@@ -184,7 +184,7 @@ export default function Project() {
       <div className="md:hidden flex flex-col w-full pt-24 pb-10 bg-[#FAFAF9]">
 
         {/* Title (top-left) + Date (top-right) — same horizontal padding as image */}
-        <div className="flex items-baseline justify-between px-4 mb-2">
+        <div className="flex items-baseline justify-between px-4 mb-1">
           <h1 className="text-sm font-semibold tracking-wide leading-tight">{project.title}</h1>
           <p className="text-[9px] tracking-[0.12em] text-neutral-400 uppercase whitespace-nowrap ml-2">
             April 2026
