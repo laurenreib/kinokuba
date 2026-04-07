@@ -70,10 +70,16 @@ export default function Project() {
       <Sidebar activeCategory="works" setActiveCategory={() => navigate("/")} />
 
       {/* ───── DESKTOP LAYOUT ───── */}
-      <div className="hidden md:block w-full pt-20 pb-10 px-4 lg:px-8">
+      <div className="hidden md:block w-full pb-10 px-4 lg:px-8" style={{ paddingTop: "72px" }}>
 
         {/* Outer row: [image+overlays] [text panel] */}
-        <div className="flex items-start gap-0 w-full max-w-[1100px] mx-auto">
+        <div className="flex flex-col lg:flex-row items-start gap-0 w-full max-w-[1100px] mx-auto">
+
+          {/* Title row — only shows above image when stacked (below lg) */}
+          <div className="flex lg:hidden items-baseline justify-between w-full mb-[2px]">
+            <h1 className="text-lg font-semibold tracking-wide leading-none">{project.title}</h1>
+            <p className="text-[10px] tracking-[0.18em] text-neutral-400 uppercase whitespace-nowrap ml-2 leading-none">April 2026</p>
+          </div>
 
           {/* CENTER: image + thumbnails stacked */}
           <div className="flex flex-col flex-1 min-w-0">
@@ -162,8 +168,18 @@ export default function Project() {
             )}
           </div>
 
-          {/* RIGHT TEXT PANEL — sits beside image, top-aligned */}
-          <div className="flex-shrink-0 flex flex-col text-black pl-6 lg:pl-10" style={{ width: "260px" }}>
+          {/* Description — only shows when stacked (md, below lg) */}
+          <div className="flex lg:hidden flex-col w-full mt-4">
+            <div className="w-8 h-[1px] bg-neutral-300 mb-4" />
+            <p className="text-sm font-light leading-relaxed text-neutral-700">
+              This is a temporary description for the project. You can update this space later
+              with specific details about the client, the location, or the creative process
+              behind these photographs.
+            </p>
+          </div>
+
+          {/* RIGHT TEXT PANEL — sits beside image on lg+, hidden when stacked */}
+          <div className="hidden lg:flex flex-shrink-0 flex-col text-black pl-6 lg:pl-10" style={{ width: "260px" }}>
             <h1 className="text-2xl lg:text-3xl font-normal tracking-wide leading-tight mb-1">
               {project.title}
             </h1>
@@ -181,16 +197,16 @@ export default function Project() {
       </div>
 
       {/* ───── MOBILE LAYOUT ───── */}
-      <div className="md:hidden flex flex-col w-full pt-16 pb-10 bg-[#FAFAF9]">
+      <div className="md:hidden flex flex-col w-full pb-10 bg-[#FAFAF9]">
         {/* Title (top-left) + Date (top-right) */}
-        <div className="flex items-baseline justify-between px-4 mb-[3px]">
-          <h1 className="text-sm font-semibold tracking-wide leading-tight">{project.title}</h1>
-          <p className="text-[9px] tracking-[0.12em] text-neutral-400 uppercase whitespace-nowrap ml-2">
+        <div className="flex items-baseline justify-between px-4 mt-24 mb-[2px]">
+          <h1 className="text-sm font-semibold tracking-wide leading-none">{project.title}</h1>
+          <p className="text-[9px] tracking-[0.12em] text-neutral-400 uppercase whitespace-nowrap ml-2 leading-none">
             April 2026
           </p>
         </div>
         {/* Swipeable Photo — inset from screen edges */}
-        <div className="px-4">
+        <div className="px-4 flex flex-col">
           <div
             className="relative w-full overflow-hidden bg-[#FAFAF9]"
             style={{ aspectRatio: "3/2" }}
