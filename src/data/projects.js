@@ -51,4 +51,20 @@ export const projects = [
       "https://d1lv07utbkw7w4.cloudfront.net/Gallery/Tse/Tse9.jpg",
     ],
   },
+  {
+    slug: "project-4",
+    title: "Cameron",
+    coverUrl: "https://d1lv07utbkw7w4.cloudfront.net/Gallery/CameronKiln/Kiln1.jpg",
+    images: [
+      "https://d1lv07utbkw7w4.cloudfront.net/Gallery/CameronKiln/Kiln1.jpg",
+      "https://d1lv07utbkw7w4.cloudfront.net/Gallery/CameronKiln/Kiln2.jpg",
+      "https://d1lv07utbkw7w4.cloudfront.net/Gallery/CameronKiln/Kiln3.jpg",
+      "https://d1lv07utbkw7w4.cloudfront.net/Gallery/CameronKiln/Kiln4.jpg",
+      "https://d1lv07utbkw7w4.cloudfront.net/Gallery/CameronKiln/Kiln5.jpg",
+      "https://d1lv07utbkw7w4.cloudfront.net/Gallery/CameronKiln/Kiln6.jpg",
+      "https://d1lv07utbkw7w4.cloudfront.net/Gallery/CameronKiln/Kiln7.jpg",
+      "https://d1lv07utbkw7w4.cloudfront.net/Gallery/CameronKiln/Kiln8.jpg",
+      "https://d1lv07utbkw7w4.cloudfront.net/Gallery/CameronKiln/Kiln9.jpg",
+    ],
+  },
 ];
