@@ -83,7 +83,6 @@ export default function Home() {
                 <Card p={p} navigate={navigate} aspect={i === 0 ? "4/5" : "4/3"} />
               </div>
             ))}
-            ))}
           </div>
 
         </div>
