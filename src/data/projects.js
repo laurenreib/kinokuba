@@ -1,7 +1,7 @@
 // src/data/projects.js
 export const projects = [
   {
-    slug: "project-1",
+    slug: "Cameron",
     title: "Cameron",
     coverUrl: "https://d1lv07utbkw7w4.cloudfront.net/Gallery/CameronKiln/Kiln1.jpg",
     images: [
@@ -17,7 +17,7 @@ export const projects = [
     ],
   },
   {
-    slug: "project-2",
+    slug: "Jodie",
     title: "Jodie",
     coverUrl: "https://d1lv07utbkw7w4.cloudfront.net/Gallery/Suenos/Jodie1.jpg",
     images: [
@@ -33,7 +33,7 @@ export const projects = [
     ],
   },
   {
-    slug: "project-3",
+    slug: "Shel",
     title: "Shel",
     coverUrl: "https://d1lv07utbkw7w4.cloudfront.net/Gallery/Shel/Shel1.jpg",
     images: [
@@ -49,7 +49,7 @@ export const projects = [
     ],
   },
   {
-    slug: "project-4",
+    slug: "Masochismo",
     title: "Masochismo",
     coverUrl: "https://d1lv07utbkw7w4.cloudfront.net/Gallery/Masochismo2000/Masochismo1.jpg",
     images: [
@@ -66,8 +66,8 @@ export const projects = [
       "https://d1lv07utbkw7w4.cloudfront.net/Gallery/Masochismo2000/Masochismo11.jpg",
     ],
   },
-  {
-    slug: "project-5",
+  { 
+    slug: "Cosm",
     title: "Cosm",
     coverUrl: "https://d1lv07utbkw7w4.cloudfront.net/Gallery/CameronCosm/Cosm1.jpg",
     images: [
@@ -78,34 +78,6 @@ export const projects = [
       "https://d1lv07utbkw7w4.cloudfront.net/Gallery/CameronCosm/Cosm5.jpg",
       "https://d1lv07utbkw7w4.cloudfront.net/Gallery/CameronCosm/Cosm6.jpg",
       "https://d1lv07utbkw7w4.cloudfront.net/Gallery/CameronCosm/Cosm7.jpg",
-    ],
-  },
-  {
-    slug: "project-6",
-    title: "La Limpieza",
-    coverUrl: "https://d1lv07utbkw7w4.cloudfront.net/Gallery/LaLimpieza/Limpieza1.jpg",
-    images: [
-      "https://d1lv07utbkw7w4.cloudfront.net/Gallery/LaLimpieza/Limpieza1.jpg",
-      "https://d1lv07utbkw7w4.cloudfront.net/Gallery/LaLimpieza/Limpieza2.jpg",
-      "https://d1lv07utbkw7w4.cloudfront.net/Gallery/LaLimpieza/Limpieza3.jpg",
-      "https://d1lv07utbkw7w4.cloudfront.net/Gallery/LaLimpieza/Limpieza4.jpg",
-      "https://d1lv07utbkw7w4.cloudfront.net/Gallery/LaLimpieza/Limpieza5.jpg",
-    ],
-  },
-  {
-    slug: "project-7",
-    title: "TSE",
-    coverUrl: "https://d1lv07utbkw7w4.cloudfront.net/Gallery/Tse/Tse1.jpg",
-    images: [
-      "https://d1lv07utbkw7w4.cloudfront.net/Gallery/Tse/Tse1.jpg",
-      "https://d1lv07utbkw7w4.cloudfront.net/Gallery/Tse/Tse2.jpg",
-      "https://d1lv07utbkw7w4.cloudfront.net/Gallery/Tse/Tse3.jpg",
-      "https://d1lv07utbkw7w4.cloudfront.net/Gallery/Tse/Tse4.jpg",
-      "https://d1lv07utbkw7w4.cloudfront.net/Gallery/Tse/Tse5.jpg",
-      "https://d1lv07utbkw7w4.cloudfront.net/Gallery/Tse/Tse6.jpg",
-      "https://d1lv07utbkw7w4.cloudfront.net/Gallery/Tse/Tse7.jpg",
-      "https://d1lv07utbkw7w4.cloudfront.net/Gallery/Tse/Tse8.jpg",
-      "https://d1lv07utbkw7w4.cloudfront.net/Gallery/Tse/Tse9.jpg",
     ],
   },
 ];

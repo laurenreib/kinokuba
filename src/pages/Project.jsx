@@ -1,3 +1,4 @@
+// src/pages/Project.jsx
 import React, { useMemo, useState, useEffect, useCallback, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
@@ -65,30 +66,40 @@ export default function Project() {
     );
   }
 
+  // --- DYNAMIC LAYOUT LOGIC ---
+  // Safely check if the project is Cosm (by title or slug) to enforce portrait mode
+  const isPortrait = 
+    project.slug === "project-5" || 
+    project.slug?.toLowerCase().includes("cosm") || 
+    project.title?.toLowerCase().includes("cosm");
+
+  const containerMaxWidth = isPortrait ? "max-w-[550px]" : "max-w-[1100px]";
+  const desktopAspect = isPortrait ? "3/4" : "16/9";
+  const mobileAspect = isPortrait ? "3/4" : "3/2";
+
   return (
     <div className="min-h-screen bg-[#FAFAF9] text-neutral-900 flex flex-col overflow-hidden relative">
       <Sidebar activeCategory="works" setActiveCategory={() => navigate("/")} />
 
       {/* ───── DESKTOP LAYOUT ───── */}
       <div className="hidden md:block w-full pb-10 px-4 lg:px-8" style={{ paddingTop: "72px" }}>
+        <div className={`w-full mx-auto ${containerMaxWidth}`}>
 
-        {/* Outer row: [image+overlays] [text panel] */}
-        <div className="flex flex-col lg:flex-row items-start gap-0 w-full max-w-[1100px] mx-auto">
-
-          {/* Title row — only shows above image when stacked (below lg) */}
-          {/* FIX: Increased negative bottom margin to -mb-4 to pull text even closer */}
-          <div className="flex lg:hidden items-baseline justify-between w-full -mb-7 relative z-10">
-            <h1 className="text-lg font-semibold tracking-wide leading-none">{project.title}</h1>
-            <p className="text-[10px] tracking-[0.18em] text-neutral-400 uppercase whitespace-nowrap ml-2 leading-none">April 2026</p>
+          {/* Title + date — perfectly aligned to image width */}
+          <div className="flex items-baseline justify-between w-full mb-3">
+            <h1 className="text-2xl lg:text-3xl font-bold text-neutral-900 leading-none">
+              {project.title}
+            </h1>
+            <p className="text-xs lg:text-sm font-semibold tracking-[0.15em] text-neutral-400 uppercase whitespace-nowrap ml-4">
+              April 2026
+            </p>
           </div>
 
-          {/* CENTER: image + thumbnails stacked */}
-          <div className="flex flex-col flex-1 min-w-0">
-
-            {/* Image container — overlays live inside here */}
+          {/* Image + thumbnails */}
+          <div className="flex flex-col w-full">
             <div
-              className="relative w-full overflow-hidden bg-neutral-100"
-              style={{ aspectRatio: "16/9" }}
+              className="relative w-full overflow-hidden bg-[#FAFAF9]"
+              style={{ aspectRatio: desktopAspect }}
             >
               <AnimatePresence initial={false} custom={direction}>
                 <motion.img
@@ -105,7 +116,7 @@ export default function Project() {
                 />
               </AnimatePresence>
 
-              {/* LEFT overlay — slim strip on photo, fades in on hover */}
+              {/* LEFT overlay */}
               {images.length > 1 && (
                 <div
                   className="absolute left-0 top-0 h-full z-20 cursor-pointer"
@@ -124,7 +135,7 @@ export default function Project() {
                 </div>
               )}
 
-              {/* RIGHT overlay — slim strip on photo, fades in on hover */}
+              {/* RIGHT overlay */}
               {images.length > 1 && (
                 <div
                   className="absolute right-0 top-0 h-full z-20 cursor-pointer"
@@ -144,55 +155,40 @@ export default function Project() {
               )}
             </div>
 
-            {/* Thumbnails — full width of image, uniform height */}
+            {/* Thumbnails - Now conditionally centered if portrait */}
             {images.length > 1 && (
-              <div className="flex mt-2 gap-[3px]">
+              <div className={`flex mt-4 gap-[3px] overflow-x-auto ${isPortrait ? "justify-center" : ""}`}>
                 {images.map((img, i) => (
                   <button
                     key={i}
                     onClick={() => { setDirection(i > index ? 1 : -1); setIndex(i); }}
-                    className="relative flex-1 overflow-hidden cursor-pointer"
-                    style={{ height: "70px" }}
+                    className="relative overflow-hidden cursor-pointer flex-shrink-0"
+                    style={{ 
+                      height: isPortrait ? "110px" : "70px",
+                      aspectRatio: desktopAspect,
+                      flex: isPortrait ? "none" : "1"
+                    }}
                   >
                     <img src={img} className="w-full h-full object-cover" alt={`Thumbnail ${i + 1}`} />
-                    {/* Golden tint overlay — removed on active */}
                     <div
                       className={`absolute inset-0 transition-all duration-250 ${
-                        i === index
-                          ? "border-2 border-[#D4A017]"
-                          : "bg-[#c49a10]/65 hover:bg-[#D4A017]/30"
+                        i === index ? "border-2 border-[#D4A017]" : "bg-[#c49a10]/65 hover:bg-[#D4A017]/30"
                       }`}
                     />
                   </button>
                 ))}
               </div>
             )}
-          </div>
 
-          {/* Description — only shows when stacked (md, below lg) */}
-          <div className="flex lg:hidden flex-col w-full mt-4">
-            <div className="w-8 h-[1px] bg-neutral-300 mb-4" />
-            <p className="text-sm font-light leading-relaxed text-neutral-700">
-              This is a temporary description for the project. You can update this space later
-              with specific details about the client, the location, or the creative process
-              behind these photographs.
-            </p>
-          </div>
-
-          {/* RIGHT TEXT PANEL — sits beside image on lg+, hidden when stacked */}
-          <div className="hidden lg:flex flex-shrink-0 flex-col text-black pl-6 lg:pl-10" style={{ width: "260px" }}>
-            <h1 className="text-2xl lg:text-3xl font-normal tracking-wide leading-tight mb-1">
-              {project.title}
-            </h1>
-            <p className="text-xs tracking-[0.18em] text-neutral-400 uppercase mb-5">
-              April 2026
-            </p>
-            <div className="w-8 h-[1px] bg-neutral-300 mb-5" />
-            <p className="text-sm font-light leading-relaxed text-neutral-700">
-              This is a temporary description for the project. You can update this space later
-              with specific details about the client, the location, or the creative process
-              behind these photographs.
-            </p>
+            {/* Description */}
+            <div className="mt-6">
+              <div className="w-8 h-[1px] bg-neutral-300 mb-4" />
+              <p className="text-sm font-light leading-relaxed text-neutral-700 max-w-xl">
+                This is a temporary description for the project. You can update this space later
+                with specific details about the client, the location, or the creative process
+                behind these photographs.
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -200,18 +196,20 @@ export default function Project() {
       {/* ───── MOBILE LAYOUT ───── */}
       <div className="md:hidden flex flex-col w-full pb-10 bg-[#FAFAF9]">
         {/* Title (top-left) + Date (top-right) */}
-        {/* FIX: Increased negative bottom margin to -mb-4 here as well */}
-        <div className="flex items-baseline justify-between px-4 mt-24 -mb-4 relative z-10">
-          <h1 className="text-sm font-semibold tracking-wide leading-none">{project.title}</h1>
-          <p className="text-[9px] tracking-[0.12em] text-neutral-400 uppercase whitespace-nowrap ml-2 leading-none">
+        <div className="flex items-baseline justify-between px-4 mt-24 mb-3">
+          <h1 className="text-xl font-bold text-neutral-900 leading-none">
+            {project.title}
+          </h1>
+          <p className="text-[10px] font-semibold tracking-widest text-neutral-400 uppercase whitespace-nowrap ml-2">
             April 2026
           </p>
         </div>
-        {/* Swipeable Photo — inset from screen edges */}
+        
+        {/* Swipeable Photo */}
         <div className="px-4 flex flex-col">
           <div
             className="relative w-full overflow-hidden bg-[#FAFAF9]"
-            style={{ aspectRatio: "3/2" }}
+            style={{ aspectRatio: mobileAspect }}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -226,22 +224,26 @@ export default function Project() {
                 animate="center"
                 exit="exit"
                 transition={{ x: { type: "spring", stiffness: 300, damping: 30 }, opacity: { duration: 0.15 } }}
-                className="absolute inset-0 w-full h-full object-contain"
+                className="absolute inset-0 w-full h-full object-cover"
                 alt={`${project.title} - ${index + 1}`}
               />
             </AnimatePresence>
           </div>
         </div>
 
-        {/* Thumbnails — same px-4 inset so they align exactly with image edges */}
+        {/* Thumbnails - Now conditionally centered if portrait */}
         {images.length > 1 && (
-          <div className="flex mt-[3px] gap-[2px] px-4">
+          <div className={`flex mt-[3px] gap-[2px] px-4 overflow-x-auto ${isPortrait ? "justify-center" : ""}`}>
             {images.map((img, i) => (
               <button
                 key={i}
                 onClick={() => { setDirection(i > index ? 1 : -1); setIndex(i); }}
-                className="relative flex-1 overflow-hidden cursor-pointer"
-                style={{ height: "36px" }}
+                className="relative overflow-hidden cursor-pointer flex-shrink-0"
+                style={{ 
+                  height: isPortrait ? "80px" : "36px",
+                  aspectRatio: mobileAspect,
+                  flex: isPortrait ? "none" : "1"
+                }}
               >
                 <img src={img} className="w-full h-full object-cover" alt={`Thumbnail ${i + 1}`} />
                 <div
@@ -254,7 +256,7 @@ export default function Project() {
           </div>
         )}
 
-        {/* Description — below thumbnails, padded */}
+        {/* Description */}
         <div className="px-4 mt-5">
           <div className="w-8 h-[1px] bg-neutral-300 mb-3" />
           <p className="text-xs font-light leading-relaxed text-neutral-700">
